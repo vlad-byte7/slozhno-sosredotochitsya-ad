@@ -1,5 +1,319 @@
 /* Основные стили проекта. Это стили для темы, которую вы верстаете первой. */
 
 .page {
-  /* сохраните в разметке и стилях класс page у тега body. Он удобен, чтобы составлять селекторы для разных цветовых тем. */
+  color: var(--text-color, #fff1f7);
+  font-family: var(--font-family, 'IBM Plex mono', monospace);
+  font-size: var(--text-size, 1rem);
+  line-height: var(--text-line-height, 1.5);
+  background-color: var(--bg-color, #000028);
+  background-image: var(--page-bg-image);
+  background-position: center;
+  background-size: cover;
+  background-attachment: fixed;
+}
+
+img {
+  display: block;
+  max-inline-size: 100%;
+}
+
+/* Общий класс декоративных уголков (шапка и подвал) */
+.decorated-zone {
+  position: relative;
+}
+
+.decorated-zone::before,
+.decorated-zone::after {
+  content: '';
+  position: absolute;
+  inline-size: var(--corner-size, 20px);
+  block-size: var(--corner-size, 20px);
+  pointer-events: none;
+}
+
+.decorated-zone::before {
+  inset-block-start: var(--corner-offset, 10px);
+  inset-inline-end: var(--corner-offset, 10px);
+  border-block-start: 1px solid var(--accent-color, #ff0070);
+  border-inline-end: 1px solid var(--accent-color, #ff0070);
+}
+
+.decorated-zone::after {
+  inset-block-end: var(--corner-offset, 10px);
+  inset-inline-start: var(--corner-offset, 10px);
+  border-block-end: 1px solid var(--accent-color, #ff0070);
+  border-inline-start: 1px solid var(--accent-color, #ff0070);
+}
+
+/* Декоративная плашка для заголовков и текста */
+.title-decor {
+  color: var(--decor-text-color, #000028);
+  background-color: var(--accent-color, #ff0070);
+}
+
+/* Крупный заголовок страницы */
+.title {
+  margin: 0;
+  color: var(--title-color, #db00ff);
+  font-weight: bold;
+  font-size: var(--title-size);
+  line-height: 1;
+  text-shadow: var(--title-shadow-offset, 4px) var(--title-shadow-offset, 4px) 0
+    var(--accent-color, #ff0070);
+}
+
+/* Шапка */
+.header {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  block-size: 100vh;
+  min-block-size: var(--block-min-height, 668px);
+  padding: 50px var(--page-padding, 10px) 40px;
+}
+
+.header__rec {
+  position: absolute;
+  inset-block-start: 14px;
+  inset-inline-end: 40px;
+  display: var(--rec-display, block);
+  color: var(--accent-color, #ff0070);
+  font-size: var(--small-text-size, 0.875rem);
+}
+
+.header__rec::after {
+  content: '';
+  display: inline-block;
+  inline-size: 8px;
+  block-size: 8px;
+  margin-inline-start: 6px;
+  border-radius: 50%;
+  background-color: var(--accent-color, #ff0070);
+}
+
+.header__theme-menu {
+  justify-self: end;
+}
+
+.header__theme-menu-list {
+  display: grid;
+  justify-items: end;
+  gap: 4px;
+}
+
+.header__theme-menu-button {
+  border: 1px solid transparent;
+  padding: 4px 8px;
+  color: var(--theme-button-color, #ff0070);
+  font-size: var(--small-text-size, 0.875rem);
+  text-transform: lowercase;
+  background: none;
+  cursor: pointer;
+}
+
+.header__theme-menu-button:hover {
+  border-color: color-mix(in srgb, currentColor 40%, transparent);
+}
+
+.header__theme-menu-button:focus-visible {
+  outline: none;
+  border-block-end-color: currentColor;
+}
+
+.header__theme-menu-button_active {
+  border-color: currentColor;
+  pointer-events: none;
+}
+
+.header__title {
+  align-self: center;
+}
+
+.header__lead {
+  align-self: end;
+  justify-self: start;
+  inline-size: 100%;
+  font-weight: bold;
+  font-size: var(--lead-text-size, 1.25rem);
+}
+
+/* Основное содержимое */
+.content {
+  display: grid;
+  gap: 60px;
+  padding: 40px var(--page-padding, 10px);
+}
+
+.section {
+  display: grid;
+  gap: var(--section-gap, 20px);
+}
+
+.section__title {
+  color: var(--section-title-color, #ff0070);
+  font-weight: bold;
+  font-size: var(--text-size, 1rem);
+}
+
+.section__content {
+  display: grid;
+  align-content: start;
+  gap: var(--section-gap, 20px);
+}
+
+.section__cards {
+  display: grid;
+  gap: var(--section-gap, 20px);
+}
+
+.card {
+  display: grid;
+  align-content: start;
+  gap: 10px;
+}
+
+.card__title {
+  font-weight: bold;
+  font-size: var(--text-size, 1rem);
+}
+
+.card__title_weight_regular {
+  font-weight: normal;
+}
+
+.card__text {
+  margin: 0;
+}
+
+.card__link {
+  color: var(--accent-color, #ff0070);
+  text-shadow: 1px 1px 0 var(--bg-color, #000028);
+  text-decoration: none;
+}
+
+.card__link:hover {
+  border-block-end: 1px solid currentColor;
+}
+
+.card__link:focus {
+  outline: none;
+}
+
+.card__link:focus-visible {
+  outline: 1px solid currentColor;
+}
+
+/* Галерея */
+.gallery {
+  display: grid;
+  gap: 10px;
+}
+
+.gallery__title {
+  margin: 0;
+  font-weight: bold;
+  font-size: var(--text-size, 1rem);
+}
+
+.gallery__image {
+  inline-size: 100%;
+  border: 1px solid var(--accent-color, #ff0070);
+}
+
+/* Подвал */
+.footer {
+  display: grid;
+  place-items: center;
+  block-size: 100vh;
+  min-block-size: var(--block-min-height, 668px);
+  padding: var(--page-padding, 10px);
+}
+
+.footer__title {
+  --title-shadow-offset: var(--footer-title-shadow-offset, 2px);
+}
+
+/* Планшет */
+@media (width >= 768px) {
+  .header {
+    padding-block-start: 60px;
+  }
+
+  .header__theme-menu {
+    margin-block-start: 40px;
+  }
+
+  .header__lead {
+    justify-self: end;
+    inline-size: min(100%, 31ch);
+  }
+
+  .content {
+    gap: 100px;
+    padding-block: 60px;
+  }
+
+  .section_layout_aside {
+    grid-template-columns: 1fr 2fr;
+  }
+
+  .gallery {
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: auto repeat(3, clamp(110px, 18vw, 250px));
+    grid-template-areas:
+      'title title title'
+      'sunset sunset ice-cream'
+      'tape books ice-cream'
+      'tape street street';
+  }
+
+  .gallery__title {
+    grid-area: title;
+  }
+
+  .gallery__image {
+    block-size: 100%;
+    object-fit: cover;
+    object-position: center;
+  }
+
+  .gallery__image_subject_sunset {
+    grid-area: sunset;
+  }
+
+  .gallery__image_subject_ice-cream {
+    grid-area: ice-cream;
+  }
+
+  .gallery__image_subject_tape {
+    grid-area: tape;
+  }
+
+  .gallery__image_subject_books {
+    grid-area: books;
+  }
+
+  .gallery__image_subject_street {
+    grid-area: street;
+  }
+}
+
+/* Десктоп */
+@media (width >= 1024px) {
+  .header__theme-menu {
+    justify-self: center;
+    margin-block-start: 0;
+  }
+
+  .header__theme-menu-list {
+    display: flex;
+    gap: 16px;
+  }
+
+  .header__lead {
+    inline-size: min(100%, 42ch);
+  }
+
+  .section__cards {
+    grid-template-columns: repeat(3, 1fr);
+  }
 }

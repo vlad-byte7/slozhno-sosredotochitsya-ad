@@ -2,3 +2,48 @@
   Переменные для вашего проекта
   и их переопределение под различные устройства
 */
+
+:root {
+  /* Основная (тёмная) тема */
+  --bg-color: #000028;
+  --text-color: #fff1f7;
+  --accent-color: #ff0070;
+  --title-color: #db00ff;
+  --decor-text-color: #000028;
+  --page-bg-image: url(../images/cover-image-dark.png);
+  --rec-display: block;
+  --theme-button-color: var(--accent-color);
+  --section-title-color: var(--accent-color);
+
+  /* Типографика */
+  --font-family: 'IBM Plex mono', monospace;
+  --text-size: 1rem;
+  --text-line-height: 1.5;
+  --small-text-size: 0.875rem;
+  --lead-text-size: 1.25rem;
+  --title-size: clamp(7.25rem, 7.0115rem + 1.0178vw, 7.5rem);
+  --title-shadow-offset: 4px;
+  --footer-title-shadow-offset: 2px;
+
+  /* Размеры и отступы */
+  --page-padding: 10px;
+  --section-gap: 20px;
+  --block-min-height: 668px;
+  --corner-size: 20px;
+  --corner-offset: 10px;
+}
+
+@media (width >= 768px) {
+  :root {
+    --title-size: clamp(7.5rem, 0.5625rem + 14.4531vw, 9.8125rem);
+    --page-padding: 20px;
+    --section-gap: 40px;
+    --block-min-height: 1024px;
+  }
+}
+
+@media (width >= 1024px) {
+  :root {
+    --block-min-height: 768px;
+  }
+}
